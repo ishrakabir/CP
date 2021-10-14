@@ -1,0 +1,107 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define li long long int
+#define ul unsigned long long int
+#define pb push_back
+#define pf push_front
+#define mp make_pair
+#define sz size()
+#define mod 1000000007
+#define fr first
+#define se second
+
+#define vi vector <int>
+#define vb vector <bool>
+#define vl vector <ll>
+#define vpi vector <pair<int, int>>
+#define vpl vector <pair<ll, ll>>
+#define vplb vector <pair<ll, bool>>
+#define vpib vector <pair<int, bool>>
+#define vvi vector <vector<int>>
+#define vvl vector <vector<ll>>
+#define seti set <int>
+#define setl set <ll>
+#define mapl map <ll, ll>
+#define mapi map <int, int>
+#define mults multiset<ll>
+#define vs vector<string>
+#define ppi pair<int, int>
+
+#define for0(i,n) for (ll i=0;i<n;i++)
+#define for1(i,n) for (ll i=1;i<=n;i++)
+#define __lcm(a, b) ((a * b) / __gcd(a, b))
+
+#define all(v) (v).begin(), (v).end()
+#define rall(v) (v).rbegin(), (v).rend()
+
+#define Fastio ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+signed main()
+{
+    Fastio;
+    string x, y;
+    while(cin >> x >> y)
+    {
+        ppi s = {x[0] - 'a' + 1, x[1] - '0'}, d = {y[0] - 'a' + 1, y[1] - '0'};
+        vvi a(8, vi(8, 0));
+        if(x == y)
+        {
+            cout << "To get from " << x << " to " << y << " takes " << 0 << " knight moves." << endl; 
+            continue;
+        }
+        queue<ppi> q;
+        q.push({s.fr - 1, s.se - 1});
+        while(!q.empty())
+        {
+            ppi u = q.front();
+            q.pop();
+            if(u.fr - 1 >= 0 && u.se - 2 >= 0 && a[u.fr - 1][u.se - 2] == 0) 
+            {
+                q.push({u.fr - 1, u.se - 2});
+                a[u.fr - 1][u.se - 2] = a[u.fr][u.se] + 1;
+            }
+            if(u.fr - 2 >= 0 && u.se - 1 >= 0 && a[u.fr - 2][u.se - 1] == 0) 
+            {
+                q.push({u.fr - 2, u.se - 1});
+                a[u.fr - 2][u.se - 1] = a[u.fr][u.se] + 1;
+            }
+
+            if(u.fr + 1 < 8 && u.se - 2 >= 0 && a[u.fr + 1][u.se - 2] == 0) 
+            {
+                q.push({u.fr + 1, u.se - 2});
+                a[u.fr + 1][u.se - 2] = a[u.fr][u.se] + 1;
+            }
+            if(u.fr + 2 < 8 && u.se - 1 >= 0 && a[u.fr + 2][u.se - 1] == 0) 
+            {
+                q.push({u.fr + 2, u.se - 1});
+                a[u.fr + 2][u.se - 1] = a[u.fr][u.se] + 1;
+            }
+
+            if(u.fr - 1 >= 0 && u.se + 2 < 8 && a[u.fr - 1][u.se + 2] == 0) 
+            {
+                q.push({u.fr - 1, u.se + 2});
+                a[u.fr - 1][u.se + 2] = a[u.fr][u.se] + 1;
+            }
+            if(u.fr - 2 >= 0 && u.se + 1 < 8 && a[u.fr - 2][u.se + 1] == 0) 
+            {
+                q.push({u.fr - 2, u.se + 1});
+                a[u.fr - 2][u.se + 1] = a[u.fr][u.se] + 1;
+            }
+
+            if(u.fr + 1 < 8 && u.se + 2 < 8 && a[u.fr + 1][u.se + 2] == 0)
+            {
+                q.push({u.fr + 1, u.se + 2});
+                a[u.fr + 1][u.se + 2] = a[u.fr][u.se] + 1;
+            }
+            if(u.fr + 2 < 8 && u.se + 1 < 8 && a[u.fr + 2][u.se + 1] == 0)
+            {
+                q.push({u.fr + 2, u.se + 1});
+                a[u.fr + 2][u.se + 1] = a[u.fr][u.se] + 1;
+            }
+        }
+        // cout << s.fr << " " << s.se << " " << d.fr << " " << d.se << endl;
+        // cout << a[d.fr - 1][d.se - 1] << endl;
+        cout << "To get from " << x << " to " << y << " takes " << a[d.fr - 1][d.se - 1] << " knight moves." << endl; 
+    }    
+    return 0;
+}
