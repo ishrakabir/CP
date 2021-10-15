@@ -43,23 +43,31 @@ signed main()
     Fastio;
     int v, c, s, d;
     cin >> v >> c >> s >> d;
-    if (s == d)
+    if(s == d)
     {
-        cout << 0 << endl;
+        cout << v << endl;
         return 0;
     }
-    if (s < d)
+    else if (s < d)
     {
-        int cnt = d - s - 1;
-        cnt *= v;
-        cnt += (d - s) * 2 * c;
+        int cnt = c;
+        for(int i = s + 1; i < d; i++)
+        {
+            cnt += v;
+            cnt += (c * 2);
+        }
+        cnt += c;
         cout << cnt << endl;
     }
     else
     {
-        int cnt = s - d + 1;
-        cnt *= v;
-        cnt += (s - d) * 2 * c;
+        int cnt = v + c;
+        for(int i = s - 1; i > d; i--)
+        {
+            cnt += v;
+            cnt += (2 * c);
+        }
+        cnt += v + c;
         cout << cnt << endl;
     }
 }
