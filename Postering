@@ -56,7 +56,6 @@ signed main()
             {
                 s.pop();
                 if(s.empty()) break;
-                cout << "GG" << endl;
             }
             if(s.empty())
             {
