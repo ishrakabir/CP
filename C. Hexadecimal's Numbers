@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define li long long int
+#define ul unsigned long long int
+#define pb push_back
+#define pf push_front
+#define mp make_pair
+#define sz size()
+#define mod 1000000007
+#define fr first
+#define se second
+#define pii pair<int, int>
+#define pll pair<ll, ll>
+
+#define vi vector <int>
+#define vb vector <bool>
+#define vl vector <ll>
+#define vpi vector <pair<int, int>>
+#define vpl vector <pair<ll, ll>>
+#define vplb vector <pair<ll, bool>>
+#define vpib vector <pair<int, bool>>
+#define vvi vector <vector<int>>
+#define vvl vector <vector<ll>>
+#define seti set <int>
+#define setl set <ll>
+#define mapl map <ll, ll>
+#define mapi map <int, int>
+#define mults multiset<ll>
+#define vs vector<string>
+
+#define for0(i, n) for (ll i=0;i<n;i++)
+#define for1(i, n) for (ll i=0;i<=n;i++)
+#define __lcm(a, b) ((a * b) / __gcd(a, b))
+
+#define all(v) (v).begin(), (v).end()
+#define rall(v) (v).rbegin(), (v).rend()
+
+#define Fastio ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+int decToBinary(int n)
+{
+    int binaryNum[32];
+    int i = 0;
+    while (n > 0) 
+    {
+        binaryNum[i] = n % 2;
+        n = n / 2;
+        i++;
+    }
+    string s;
+    for (int j = i - 1; j >= 0; j--) s += (binaryNum[j] + '0');
+    ll res = stoi(s);
+    return res;
+}
+signed main()
+{
+    Fastio;
+    ll n, cnt = 0;
+    cin >> n;
+    for(int i = 1; i <= 512; i++)
+    {
+        ll res = decToBinary(i);
+        if(res <= n) cnt++;
+        else break;
+    }
+    cout << cnt << endl;
+    return 0;
+}
